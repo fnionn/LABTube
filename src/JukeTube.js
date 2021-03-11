@@ -898,10 +898,8 @@ class JukeTube extends EventEmitter {
         this._emitError(message, e);
       });
       queue.dispatcher = queue.connection.play(stream, {
-        highWaterMark: 1,
         type: "opus",
         volume: queue.volume / 100,
-        bitrate: "auto",
       }).on("finish", () => this._handleSongFinish(message, queue))
         .on("error", e => {
           this._handlePlayingError(message, queue, errorEmitted ? null : e);
